@@ -1,4 +1,6 @@
 import logo from "./logo.svg";
+import { ThemeProvider } from "styled-components";
+
 import "./App.css";
 import { useState,useEffect ,Suspense } from "react";
 import {
@@ -7,7 +9,15 @@ import {
   getTracks,
   saveTrack,
 } from "../src/service/trackService";
+import Header from "./components/Header";
 import TrackList from "./trackList";
+import GlobalStyles from "./components/styles/Global";
+
+const theme = {
+  colors:{
+    header:'#ebffff',
+  }
+}
 
 function App() {
   const [trackList, setTrackList] = useState([]);
@@ -60,6 +70,8 @@ function App() {
     // const data = await result.json();
   };
   return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
     <div className="App">
       <input onChange={inputHandler} />
       <button onClick={handleClick}>Szukaj</button>
@@ -70,7 +82,10 @@ function App() {
       <input onChange={titleHandler} />
       <input onChange={descHandler} />
       <button onClick={()=>{addTrack(track)}}> Save track </button>
+      <Header />
+  
     </div>
+    </ThemeProvider>
   );
 }
 
