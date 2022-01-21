@@ -15,7 +15,7 @@ class TrackAction{
             return res.status(422).json({message:error.message})
         }
 
-        res.status(2001).json(track);
+        res.status(201).json(track);
     }
 
     //get tracks

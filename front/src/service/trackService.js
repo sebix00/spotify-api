@@ -7,13 +7,13 @@ export function getTracks(artistName) {
 }
 
 export function saveTrack(track) {
-	if (track.id) {
-		const body = { ...track };
-		delete body.id;
-		return http.put(apiEndpoint + 'add-track/', body);
-	}
+	// if (track.id) {
+	// 	const body = { ...track };
+	// 	delete body.id;
+	// 	return http.put(apiEndpoint + 'add-track/', body);
+	// }
 
-	return http.post(apiEndpoint + 'add-track/', track);
+	return http.post('http://localhost:3002/db/' + 'tracks', track);
 }
 
 export function deleteTrack(trackName) {
@@ -21,5 +21,5 @@ export function deleteTrack(trackName) {
 }
 
 export function getFavourite() {
-	return http.get(apiEndpoint + 'favourite/');
+	return http.get('http://localhost:3002/db/' + 'tracks');
 }
