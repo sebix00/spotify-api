@@ -6,6 +6,7 @@ import { StyledInput } from "./styles/Input.styled";
 import { IconBox } from "./styles/Input.styled";
 import { AiOutlineSearch } from "react-icons/ai";
 
+
 const Input = (props) => {
   const dispatch = useDispatch();
 

@@ -1,15 +1,26 @@
 import { StyledTrackList } from "./styles/TrackList.styled";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 import Track from "./Track";
 
-const DUMMY_TRACK = [
-  { title: "Krzysztof Krawczyk - Trudno Być" },
-  { title: "Krzysztof Krawczyk - Chciałbym Być" },
-  { title: "Krzysztof Krawczyk - Ile bym dał" },
-  { title: "Krzysztof Krawczyk - To nie to samo" },
-];
+import {
+  deleteTrack,
+  getFavourite,
+  getTracks,
+  saveTrack,
+} from "../service/trackService";
 
 const TrackList = () => {
-  const element = DUMMY_TRACK.map((track) => <Track title={track.title} />);
+  const aritsName = useSelector((state) => state.input.input);
+
+  let track;
+  useEffect(async () => {
+    track = await getTracks(aritsName);
+  });
+
+  const element = track.map((track) => (
+    <Track title={track.title} key={track.id} id={track.id} />
+  ));
 
   return <StyledTrackList>{element}</StyledTrackList>;
 };
