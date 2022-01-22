@@ -1,90 +1,35 @@
 import logo from "./logo.svg";
 import { ThemeProvider } from "styled-components";
+import { BrowserRouter } from "react-router-dom";
+import { Route } from "react-router";
+import { Routes } from "react-router";
 
-import "./App.css";
-import { useState,useEffect ,Suspense } from "react";
-import {
-  deleteTrack,
-  getFavourite,
-  getTracks,
-  saveTrack,
-} from "../src/service/trackService";
-import Header from "./components/Header";
-import TrackList from "./trackList";
 import GlobalStyles from "./components/styles/Global";
 
+import Favourite from "./components/Favourite";
+import About from "./components/About";
+import Header from "./components/Header";
+import Default from "./Default";
+
 const theme = {
-  colors:{
-    header:'#ebffff',
-  }
-}
+  colors: {
+    header: "rgb(247,247,247)",
+    body: "rgb(247,247,247)",
+    navLink: "rgb(125,125,125)",
+    title: "rgb(30,30,30)",
+  },
+};
 
 function App() {
-  const [trackList, setTrackList] = useState([]);
-  const [artistName, setAritsName] = useState("");
-  const [element, setElement] = useState("");
-
-  const [favTrack,setFavTrack] = useState("");
-
-
-  const[title,setTitle]=useState("");
-  const [desc,setDesc] = useState("");
-
-  const track = {title,body:desc,id:4}
-
-
-  // db connection
-  const fetchTracks = async()=>{
-    const res = await getFavourite();
-    const tracks = res.data;
-    setFavTrack(tracks);
-  }
-
-  useEffect(()=>{
-    fetchTracks();
-  },[]);
-  
-
-
-
-  const titleHandler = event=>{
-    setTitle(event.target.value);
-  }
-
-  const descHandler = event=>{
-    setDesc(event.target.value);
-  }
-  const addTrack  = async(track)=>{
-    const res = await saveTrack(track);
-  }
-
-  const inputHandler = (evetn) => {
-    setAritsName(evetn.target.value);
-  };
-
-  const handleClick = async (e) => {
-    const data = await getTracks(artistName);
-    console.log(data)
-    setTrackList(data.data);
-
-    // const data = await result.json();
-  };
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-    <div className="App">
-      <input onChange={inputHandler} />
-      <button onClick={handleClick}>Szukaj</button>
-      <Suspense fallback={<h1>Loading data</h1>}>
-        <TrackList tracks={trackList} />
-      </Suspense>
-
-      <input onChange={titleHandler} />
-      <input onChange={descHandler} />
-      <button onClick={()=>{addTrack(track)}}> Save track </button>
       <Header />
-  
-    </div>
+      <Routes>
+        <Route path="/" element={<Default />} />
+        <Route path="/favourite" element={<Favourite />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
     </ThemeProvider>
   );
 }

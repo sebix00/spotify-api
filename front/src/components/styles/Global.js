@@ -11,11 +11,11 @@ html{
 body{
     font-family : "Poppins", sans-serif;
     font-size:1.2rem;
-    color: hls(192,100%,9%);
+    color: rgb(125,125,125);
+    background-color: ${({ theme }) => theme.colors.body}
 }
 
 
-
-`
+`;
 
 export default GlobalStyles;
