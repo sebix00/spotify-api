@@ -16,10 +16,10 @@ export function saveTrack(track) {
 	return http.post('http://localhost:3002/db/' + 'tracks', track);
 }
 
-export function deleteTrack(trackName) {
-	return http.delete(apiEndpoint + 'delete/selectedTrack/' + trackName + '/');
+export function deleteTrack(id) {
+	return http.delete('http://localhost:3002/db/' + 'tracks/'+id);
 }
 
 export function getFavourite() {
-	return http.get('http://localhost:3002/db/' + 'tracks');
+	return http.get("http://localhost:3002/db/tracks");
 }

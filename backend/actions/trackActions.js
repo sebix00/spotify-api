@@ -5,10 +5,18 @@ class TrackAction{
     
     async saveTrack(req,res){
         const title = req.body.title;
-        const body = req.body.body;
+        const isFavourite = req.body.isFavourite;
+        const id = req.body.id;
+        const img= req.body.img;
+        const music = req.body.music;
+        const artist = req.body.artist;
+        const popularity = req.body.popularity;
+        const spotify = req.body.spotify;
+        const duration = req.body.duration;
+   
         let track;
         try{
-            track = new Track({title,body})
+            track = new Track({title,isFavourite,id,img,music,artist,popularity,duration,spotify})
             await track.save();
             
         }catch(error){
@@ -22,7 +30,7 @@ class TrackAction{
     async getAllTrack(req,res){
         let doc;
         try{
-            doc = await Track.fin({})
+            doc = await Track.find({})
         }catch(error){
             return res.status(500).json({message:error.message})
         }
@@ -34,15 +42,15 @@ class TrackAction{
     //get a specific track
     async getTrack(req,res){
         const id = req.params.id;
-        const track = await Track.find({_id:id});
+        const track = await Track.find({id});
         
         res.status(200).json(note);
     }
 
     //delete track
     async deleteTrack(req,res){
-        const id = res.params.id;
-        await Track.deleteOne({_id:id});
+        const id = req.params.id;
+        await Track.deleteOne({id});
 
         res.sendStatus(204);
     }

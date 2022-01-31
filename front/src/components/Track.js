@@ -1,59 +1,99 @@
 import { AiOutlineHeart } from "react-icons/ai";
-import { StyledTrack } from "./styles/Track.styled";
+import { BsFillHeartFill } from "react-icons/bs";
+import { StyledTrack,TrackImg,ArtistName,TrackButtons,TrackInfo,TrackButton,Title} from "./styles/Track.styled";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { favouriteAction } from "../store/favourite-slice";
 import { userActions } from "../store/userInput";
 import { useSelector } from "react-redux";
+import { toast } from 'react-toastify';
+import ModalInfo from "./ModalInfo";
+
+
+import Player from "./Audio";
 import {
   deleteTrack,
-  getFavourite,
-  getTracks,
   saveTrack,
 } from "../service/trackService";
 
 const Track = (props) => {
+
   const dispatch = useDispatch();
 
-  const [isClicked, setIsClicked] = useState(false);
-  console.log(isClicked);
+  const [showModal,setShowModal] = useState(false)
 
-  const track = {
-    title: props.title,
-    id: props.id,
-  };
+  const handleOpenModal = ()=>{
+    setShowModal(true);
+  }
+  const handleCloseModal = ()=>{
+    setShowModal(false);
+  }
 
-  //   const addToFavouriteHandler = () => {
-  //     dispatch(userActions.hendleAddFavourite(track));
-  //   };
-  let favourite;
-  useEffect(async () => {
-    const contain = favourite.some((fav) => fav._id === track.id);
-    if (contain) {
-      setIsClicked(true);
-    }
-    favourite = await getFavourite();
-  }, [favourite]);
 
+
+ 
   const clickHandler = async () => {
-    const contain = favourite.some((fav) => fav._id === track.id);
-    setIsClicked(true);
-    if (contain) {
-      await deleteTrack(track.id);
-      setIsClicked(false);
-    } else {
-      await saveTrack(track.id);
+    dispatch(userActions.handleFavourite(props.id));
+    if(!props.isFavourite){
+      const track = {id:props.id,title:props.title,isFavourite:true,img:props.img,music:props.music,artist:props.artist};
+      dispatch(favouriteAction.hendleAddFavourite(track));
+      toast.success('The song has been added to your favorites');
+    
+      await saveTrack(track);
     }
+    else {
+      dispatch(favouriteAction.handleRemoveFavourie(props.id));
+      toast.warn("The song has been removed from the favorites")
+      await deleteTrack(props.id);
   };
+}
+
+// const tracks = useSelector(state=>state.input.tracks);
+// const index = tracks.findIndex(track=>track.id===props.id);
+// const isFav = useState(false);
+
+
+
+
 
   return (
     <StyledTrack>
-      {props.title}
-      <div onClick={clickHandler}>
-        <AiOutlineHeart
-          style={{ fontSize: "2.5rem" }}
-          className={isClicked ? "active" : ""}
+      <TrackImg src={props.img}/>
+      
+     {/* <Player url={props.music}/> */}
+     <TrackInfo>
+     <div>
+     <ArtistName>{props.artist}</ArtistName>
+     <Title>{props.title}</Title>
+
+     </div>
+
+  
+    
+      <TrackButtons>
+      {/* <TrackButton onClick={handleOpenModal}>More info</TrackButton> */}
+      <ModalInfo 
+        artist={props.artist}
+        title={props.title}
+        id={props.id}
+        duration={props.duration}
+        spotify={props.spotify}
+        popularity={props.popularity}
+        img={props.img}
+        isFavourite={props.isFavourite}
         />
+     
+     <div onClick={clickHandler}>
+           <BsFillHeartFill className={props.isFavourite ? "active" : "noActive"} />
+
       </div>
+      </TrackButtons>
+    
+
+     </TrackInfo>
+     
+   
+    
     </StyledTrack>
   );
 };

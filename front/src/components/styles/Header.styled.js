@@ -23,18 +23,23 @@ export const NavUnListed = styled.ul`
 
   a {
     text-decoration: none;
+    margin-left:1.5rem;
   }
 
   li {
     color: ${({theme})=>theme.colors.navLink};
-    margin: 0 rem;
+    margin: 0rem;
     font-size: 2rem;
     list-style: none;
   }
 
   .active {
     li {
-      border-bottom: 2px solid black;
+      color:rgb(206, 72, 72);
     }
   }
 `;
+
+export const StyledSpan = styled.span`
+color:rgb(206, 72, 72);
+`

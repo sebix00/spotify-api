@@ -2,11 +2,16 @@ import { Container } from "./styles/Container.styled";
 import Input from "./Input";
 import { Title } from "./styles/Search.styled";
 import { StyledSearch } from "./styles/Search.styled";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { StyledSpan } from "./styles/Header.styled";
 
 const Search = () => {
+ 
   return (
     <StyledSearch>
-      <Title>How can we help you?</Title>
+      <Title>
+        What <StyledSpan>song</StyledSpan> are you looking for?</Title>
       <Input />
       
     </StyledSearch>

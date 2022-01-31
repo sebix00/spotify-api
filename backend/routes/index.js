@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const path = require("path");
 const request = require("request");
+var uuid = require('uuid');
 
 var SpotifyWebApi = require("spotify-web-api-node");
 const { routes } = require("../app");
@@ -86,7 +87,7 @@ router.get("/search/:aritst", async function (req, res) {
     url:
       "https://api.spotify.com/v1/search?q=" +
       req.params.aritst +
-      "&type=track&market=US&limit=2&offset=2",
+      "&type=track&market=US&limit=10&offset=5",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -98,12 +99,27 @@ router.get("/search/:aritst", async function (req, res) {
       res.send(error);
     }
     const re = await JSON.parse(body);
+    
     const data = re.tracks.items.map((item) => ({
-      name: item.name,
+      title: item.name,
       id: item.id,
+      isFavourite:false,
+      img: item.album.images[0].url,
+      music:item.preview_url,
+      artist: item.album.artists[0].name,
+      popularity:item.popularity,
+     duration: item.duration_ms,
+     spotify:item.external_urls.spotify,
+
+
     }));
+  
 
     res.send(data);
+    // console.log(re.tracks.items[0].popularity)
+    // res.send(re.tracks.items[0].album.artists[0].name);
+  
+    //  res.send(re.tracks.items[0].popularity);
   });
 });
 module.exports = router;

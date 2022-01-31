@@ -1,8 +1,14 @@
 import logo from "./logo.svg";
+
 import { ThemeProvider } from "styled-components";
 import { BrowserRouter } from "react-router-dom";
 import { Route } from "react-router";
 import { Routes } from "react-router";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import styled from "styled-components";
+import { ModalProvider, BaseModalBackground } from "styled-react-modal";
+
 
 import GlobalStyles from "./components/styles/Global";
 
@@ -20,16 +26,28 @@ const theme = {
   },
 };
 
+const FadingBackground = styled(BaseModalBackground)`
+  opacity: ${(props) => props.opacity};
+  transition: all 0.3s ease-in-out;
+
+`;
+
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      <ModalProvider backgroundComponent={FadingBackground}>
+    
       <GlobalStyles />
+      <ToastContainer  autoClose={2000}  />
       <Header />
       <Routes>
         <Route path="/" element={<Default />} />
         <Route path="/favourite" element={<Favourite />} />
         <Route path="/about" element={<About />} />
       </Routes>
+      </ModalProvider>
+
     </ThemeProvider>
   );
 }
