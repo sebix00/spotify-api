@@ -1,21 +1,19 @@
 import { StyledTrackList } from "./styles/TrackList.styled";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 import Track from "./Track";
-import { useState,Suspense } from "react";
-import {
-  deleteTrack,
-  getFavourite,
-  getTracks,
-  saveTrack,
-} from "../service/trackService";
+import { useState,useEffect } from "react";
+import spiner from "./assets/loading.gif"
+import { StyledLoad,StyledInfo } from "./styles/Common.styled";
+
 
 const TrackList = (props) => {
 
   const fav = useSelector(state=>state.favourite.trackList);
+  const isLoading = useSelector(state=>state.input.isLoading);
   const tracks = props.tracks
 
 
+  
 
   let element;
 
@@ -38,15 +36,17 @@ const TrackList = (props) => {
               />)
   })
   }else{
-    element="Please type some artis";
+    element=<StyledInfo>Please enter some artist</StyledInfo>;
   }
+
+  const loadingGif=  <StyledLoad src={spiner} alt= "data is loading" />
 
 
 
   return (
     <>
   <StyledTrackList>
-    {element}
+    {isLoading? loadingGif : element }
     </StyledTrackList>
     </>
     );

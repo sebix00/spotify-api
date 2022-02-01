@@ -16,6 +16,3 @@ letter-spacing:0.8px;
 margin-bottom:2.2rem;
 text-align:center;
 `
-export const  StyledSpan = styled.span`
-color:rgb(206, 72, 72);
-`

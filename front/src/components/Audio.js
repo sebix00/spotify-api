@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+import {BsPlayCircle,BsPauseCircle} from "react-icons/bs";
+import { AudioButton,AudioStyled } from "./styles/Audio.styled";
 
 const useAudio = url => {
   const [audio] = useState(new Audio(url));
   const [playing, setPlaying] = useState(false);
+  
 
   const toggle = () => setPlaying(!playing);
 
@@ -22,13 +25,15 @@ const useAudio = url => {
   return [playing, toggle];
 };
 
+
 const Player = ({ url }) => {
+  console.log(url);
   const [playing, toggle] = useAudio(url);
 
   return (
-    <div>
-      <button onClick={toggle}>{playing ? "Pause" : "Play"}</button>
-    </div>
+    <AudioStyled>
+      <AudioButton onClick={toggle}>{playing ?<BsPauseCircle /> : <BsPlayCircle />}</AudioButton>
+    </AudioStyled>
   );
 };
 

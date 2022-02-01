@@ -21,13 +21,14 @@ export const StyledModal = Modal.styled`
   padding:1rem 2rem;
   transitoin:all .2s;
 
-  .active{
+.active{
     color:rgb(206, 72, 72);
     font-size: 2.5rem;
+    
 }
 .noActive{
   font-size: 2.5rem;
-   color:rgb(125,125,125);
+  color:rgb(125,125,125);
 }
  
   `;
@@ -40,6 +41,7 @@ export const StyledModal = Modal.styled`
   export const TrackImg = styled.img`
   display:inline-block;
   width:100%;
+  position:relative;
   `
   export const DataTitle = styled.p`
   width:48%;
@@ -77,4 +79,7 @@ background-size:contain;
 background-repeat:no-repeat;
 height:100%;
 clip-path:inset(0 ${({per})=>100-per}% 0 0);
+`
+export const StyledPlay = styled.div`
+
 `

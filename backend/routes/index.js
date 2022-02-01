@@ -87,7 +87,7 @@ router.get("/search/:aritst", async function (req, res) {
     url:
       "https://api.spotify.com/v1/search?q=" +
       req.params.aritst +
-      "&type=track&market=US&limit=10&offset=5",
+      "&type=track&market=US&limit=15&offset=5",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",

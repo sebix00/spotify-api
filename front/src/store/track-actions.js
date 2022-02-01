@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { userActions } from "./userInput";
 import { getTracks,getFavourite} from "../service/trackService"
-import { applyMiddleware } from "redux";
+
 import { favouriteAction } from "./favourite-slice";
 
 
@@ -21,8 +21,13 @@ export const fetchingTrackData = (name)=>{
         return resp;
       }
       try{
-        const track = await fetchData();
-        dispatch(userActions.replaceTrack(track.data));
+        dispatch(userActions.setLoading(true));
+        fetchData().then(track=>{
+          dispatch(userActions.replaceTrack(track.data));
+          dispatch(userActions.setLoading(false));
+        })
+        // const track = await fetchData();
+        // dispatch(userActions.replaceTrack(track.data));
       
       }catch(err){
         throw new Error("Fetching data failed");

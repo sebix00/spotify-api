@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   input: "",
   tracks: [],
+  isLoading:false,
 };
 
 const userInputSlice = createSlice({
@@ -22,6 +23,10 @@ const userInputSlice = createSlice({
     },
     replaceTrack(state,action){
       state.tracks = action.payload;
+    },
+    setLoading(state,action){
+      state.isLoading = action.payload;
+
     }
     
     

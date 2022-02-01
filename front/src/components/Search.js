@@ -4,7 +4,7 @@ import { Title } from "./styles/Search.styled";
 import { StyledSearch } from "./styles/Search.styled";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { StyledSpan } from "./styles/Header.styled";
+import { StyledSpan } from "./styles/Common.styled";
 
 const Search = () => {
  

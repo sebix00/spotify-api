@@ -1,16 +1,26 @@
-import { StyledModal,TrackModal,DataContainer,DataTitle,DataContent,TrackImg,TrackInfo,StyledLink,Back,Front} from "./styles/StyledModal";
+import { 
+  StyledModal,
+  TrackModal,
+  DataContainer,
+  DataTitle,
+  DataContent,
+  TrackImg,
+  TrackInfo,
+  StyledLink,
+  Back,Front,
+  StyledPlay
+} from "./styles/StyledModal";
+import { StyledIcon } from "./styles/Common.styled";
 import {IoArrowBackCircleOutline } from "react-icons/io5";
-import { BsFillHeartFill,BsStar } from "react-icons/bs";
-import { AiOutlineHeart } from "react-icons/ai";
+import { BsFillHeartFill,BsStar ,BsPlayCircle} from "react-icons/bs";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { favouriteAction } from "../store/favourite-slice";
 import { toast } from 'react-toastify';
 import { userActions } from "../store/userInput";
 import {TrackButton} from "./styles/Track.styled";
-import { StyledHeart } from "./styles/StyledModal";
 import { RiExternalLinkLine } from "react-icons/ri";
-import stars from "./assets/star.svg";
+import Audio from "./Audio";
 
 import {
   deleteTrack,
@@ -20,6 +30,8 @@ import {
 const  ModalInfo=(props)=> {
     const [isOpen, setIsOpen] = useState(false);
     const [opacity, setOpacity] = useState(0);
+
+  
 
     const dispatch = useDispatch();
 
@@ -39,19 +51,19 @@ const  ModalInfo=(props)=> {
     };
   }
   
-    function toggleModal(e) {
+    const  toggleModal=(e)=> {
       setOpacity(0);
       setIsOpen(!isOpen);
       console.log("modal")
     }
   
-    function afterOpen() {
+  const afterOpen=()=> {
       setTimeout(() => {
         setOpacity(1);
       }, 100);
     }
   
-    function beforeClose() {
+  const beforeClose=() =>{
       return new Promise((resolve) => {
         setOpacity(0);
         setTimeout(resolve, 300);
@@ -63,10 +75,12 @@ const  ModalInfo=(props)=> {
       var seconds = ((value % 60000) / 1000).toFixed(0);
       return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
     }
-    
+   
   
     return (
-      <div>
+       <div>
+        
+        
         <TrackButton onClick={toggleModal}>More info</TrackButton>
         <StyledModal
           isOpen={isOpen}
@@ -79,6 +93,7 @@ const  ModalInfo=(props)=> {
         >
           <TrackModal>
           <TrackImg src={props.img}/>
+           <Audio url={props.music} />
           <TrackInfo>
 
           <DataContainer>
@@ -89,9 +104,6 @@ const  ModalInfo=(props)=> {
             {props.artist}
           </DataContent>
           </DataContainer>
-      
-        
-
           <DataContainer>
           <DataTitle>
            duration
@@ -100,17 +112,14 @@ const  ModalInfo=(props)=> {
             {msToMin(props.duration)}
           </DataContent>
             </DataContainer>
-
             <DataContainer>
           <DataTitle>
           popularity
           </DataTitle>
           <DataContent>
           <Back>
-          <Front per={props.popularity}></Front>
+          <Front per={props.popularity} title={props.popularity/100}></Front>
           </Back>
-          
-          
           </DataContent>
           </DataContainer>
          
@@ -124,12 +133,15 @@ const  ModalInfo=(props)=> {
           </DataContent>
             </DataContainer>
             <DataContainer>
-          
-           < IoArrowBackCircleOutline onClick={toggleModal}  style={{ fontSize: "2.5rem" }}/>
-           <div onClick={clickHandler}>
+              <StyledIcon>
+              < IoArrowBackCircleOutline onClick={toggleModal}  style={{ fontSize: "3rem" }}/>
+              </StyledIcon>
+    
+       
+           <StyledIcon onClick={clickHandler}>
            <BsFillHeartFill className={props.isFavourite ? "active" : "noActive"} />
 
-           </div>
+           </StyledIcon>
           
 
             </DataContainer>
@@ -138,10 +150,6 @@ const  ModalInfo=(props)=> {
           
           
           </TrackModal>
-        
-
-        
-        
         </StyledModal>
       </div>
     );

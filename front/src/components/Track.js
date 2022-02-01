@@ -35,7 +35,7 @@ const Track = (props) => {
   const clickHandler = async () => {
     dispatch(userActions.handleFavourite(props.id));
     if(!props.isFavourite){
-      const track = {id:props.id,title:props.title,isFavourite:true,img:props.img,music:props.music,artist:props.artist};
+      const track = {id:props.id,title:props.title,isFavourite:true,img:props.img,music:props.music,artist:props.artist,duration:props.duration};
       dispatch(favouriteAction.hendleAddFavourite(track));
       toast.success('The song has been added to your favorites');
     
@@ -81,6 +81,7 @@ const Track = (props) => {
         popularity={props.popularity}
         img={props.img}
         isFavourite={props.isFavourite}
+        music={props.music}
         />
      
      <div onClick={clickHandler}>

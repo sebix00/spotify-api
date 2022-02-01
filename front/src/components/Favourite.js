@@ -6,7 +6,7 @@ import Track from "./Track";
 import { fetchingFavourite } from "../store/track-actions";
 import { StyledTrackList } from "./styles/TrackList.styled";
 import { Title } from "./styles/Search.styled";
-import { StyledSpan } from "./styles/Search.styled";
+import { StyledSpan } from "./styles/Common.styled";
 const Favourite = () => {
   // const [favourite,setFavourite] = useState([]);
 

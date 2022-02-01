@@ -2,12 +2,13 @@ import logo from "./logo.svg";
 
 import { ThemeProvider } from "styled-components";
 import { BrowserRouter } from "react-router-dom";
-import { Route } from "react-router";
-import { Routes } from "react-router";
+import { Routes, Route } from "react-router";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styled from "styled-components";
 import { ModalProvider, BaseModalBackground } from "styled-react-modal";
+
+
 
 
 import GlobalStyles from "./components/styles/Global";
@@ -16,6 +17,8 @@ import Favourite from "./components/Favourite";
 import About from "./components/About";
 import Header from "./components/Header";
 import Default from "./Default";
+import NotFound from "./components/NotFound";
+import { isAsyncThunkAction } from "@reduxjs/toolkit";
 
 const theme = {
   colors: {
@@ -34,6 +37,8 @@ const FadingBackground = styled(BaseModalBackground)`
 
 
 function App() {
+
+  
   return (
     <ThemeProvider theme={theme}>
       <ModalProvider backgroundComponent={FadingBackground}>
@@ -45,6 +50,7 @@ function App() {
         <Route path="/" element={<Default />} />
         <Route path="/favourite" element={<Favourite />} />
         <Route path="/about" element={<About />} />
+        <Route path="/not-found" component={NotFound}></Route>
       </Routes>
       </ModalProvider>
 
