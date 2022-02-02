@@ -10,6 +10,7 @@
     <th><img src="https://github.com/sebix00/spotify-api/blob/master/images/robo3t(3).png" alt="data_base" width="300px" /> </th>
   </tr>
 </table>
- 
 
+ 
+<img src="https://github.com/sebix00/spotify-api/blob/master/images/robo3t(1).png" alt="data_base" width="300px" />
 
