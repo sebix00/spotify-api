@@ -5,9 +5,9 @@
 
 <table>
   <tr>
-    <th><img src="https://github.com/sebix00/spotify-api/blob/master/images/robo3t(1).png" alt="data_base" width="100px" /> </th>
-    <th><img src="https://github.com/sebix00/spotify-api/blob/master/images/robo3t(2).png" alt="data_base" width="100px" /> </th>
-    <th><img src="https://github.com/sebix00/spotify-api/blob/master/images/robo3t(3).png" alt="data_base" width="100px" /> </th>
+    <th><img src="https://github.com/sebix00/spotify-api/blob/master/images/robo3t(1).png" alt="data_base" width="200px" /> </th>
+    <th><img src="https://github.com/sebix00/spotify-api/blob/master/images/robo3t(2).png" alt="data_base" width="200px" /> </th>
+    <th><img src="https://github.com/sebix00/spotify-api/blob/master/images/robo3t(3).png" alt="data_base" width="200px" /> </th>
   </tr>
 </table>
  
