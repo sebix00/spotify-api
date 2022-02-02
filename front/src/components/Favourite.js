@@ -1,14 +1,14 @@
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { useMemo } from "react";
+import { useEffect} from "react";
+
 import { useDispatch } from "react-redux";
 import Track from "./Track";
 import { fetchingFavourite } from "../store/track-actions";
 import { StyledTrackList } from "./styles/TrackList.styled";
 import { Title } from "./styles/Search.styled";
 import { StyledSpan } from "./styles/Common.styled";
+import { StyledInfo } from "./styles/Common.styled";
 const Favourite = () => {
-  // const [favourite,setFavourite] = useState([]);
 
   const dispatch = useDispatch();
   useEffect(()=>{
@@ -45,7 +45,7 @@ const Favourite = () => {
     <>
     <Title>Your <StyledSpan>favorite's</StyledSpan>  music</Title>
     <StyledTrackList>
-     {favourite.length>0 ? tracks : "you dont hace favourite music"}
+     {favourite.length>0 ? tracks : <StyledInfo>You dont have favourite music</StyledInfo>}
     </StyledTrackList>
     </>
     

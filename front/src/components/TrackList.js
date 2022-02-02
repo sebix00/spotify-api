@@ -1,7 +1,6 @@
 import { StyledTrackList } from "./styles/TrackList.styled";
 import { useSelector } from "react-redux";
 import Track from "./Track";
-import { useState,useEffect } from "react";
 import spiner from "./assets/loading.gif"
 import { StyledLoad,StyledInfo } from "./styles/Common.styled";
 
@@ -15,10 +14,10 @@ const TrackList = (props) => {
 
   
 
-  let element;
+  let list;
 
   if(tracks.length>0){
-    element = tracks.map(track=>{
+  list = tracks.map(track=>{
 
      const isFav= fav.some(f=>f.id===track.id);
       return( 
@@ -35,8 +34,6 @@ const TrackList = (props) => {
                 popularity={track.popularity}
               />)
   })
-  }else{
-    element=<StyledInfo>Please enter some artist</StyledInfo>;
   }
 
   const loadingGif=  <StyledLoad src={spiner} alt= "data is loading" />
@@ -46,7 +43,7 @@ const TrackList = (props) => {
   return (
     <>
   <StyledTrackList>
-    {isLoading? loadingGif : element }
+    {isLoading? loadingGif :(list? list :<StyledInfo>Please enter some artist</StyledInfo> )  }
     </StyledTrackList>
     </>
     );

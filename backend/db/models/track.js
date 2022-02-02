@@ -23,6 +23,7 @@ const TrackSchema = new mongoose.Schema({
     },
     duration:{
         type:Number,
+
     },
     spotify:{
         type:String

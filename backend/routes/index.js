@@ -68,15 +68,6 @@ router.get("/playlists", async (req, res) => {
   }
 });
 
-// router.get("/search", async (req, res) => {
-//   try {
-//     const result = await spotifyApi.getArtistAlbums("Krawczyk");
-//     console.log(result.body);
-//     res.status(200).send(result.body);
-//   } catch (err) {
-//     res.status(400).send(err);
-//   }
-// });
 
 router.get("/search/:aritst", async function (req, res) {
   const code = await spotifyApi.clientCredentialsGrant();
@@ -108,18 +99,13 @@ router.get("/search/:aritst", async function (req, res) {
       music:item.preview_url,
       artist: item.album.artists[0].name,
       popularity:item.popularity,
-     duration: item.duration_ms,
-     spotify:item.external_urls.spotify,
-
-
+      duration: item.duration_ms,
+      spotify:item.external_urls.spotify,
     }));
   
 
     res.send(data);
-    // console.log(re.tracks.items[0].popularity)
-    // res.send(re.tracks.items[0].album.artists[0].name);
   
-    //  res.send(re.tracks.items[0].popularity);
   });
 });
 module.exports = router;

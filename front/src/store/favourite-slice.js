@@ -24,7 +24,7 @@ const favouriteSlice = createSlice({
             );
             if (contain) {
               const index = state.trackList.findIndex(track=>track.id===action.payload);
-              console.log(index);
+  
               state.trackList[index].isFavourite=false;
               state.trackList = state.trackList.filter(
                 (track) => track.id !== action.payload

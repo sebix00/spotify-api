@@ -1,23 +1,17 @@
 import { StyledHeader } from "./styles/Header.styled";
-import { Container } from "./styles/Container.styled";
 import { Logo } from "./styles/Header.styled";
-import { NavLinks } from "./styles/Header.styled";
-import Input from "./Input";
-import a from "./assets/logo.svg";
-import { FlexRow } from "./styles/FlexRow.styled";
-import { useSelector } from "react-redux";
+import logo from "./assets/logo.svg";
 import { NavLink } from "react-router-dom";  
 import { NavUnListed } from "./styles/Header.styled";
 import {Nav} from "./styles/Header.styled"
-import { Flex } from "./styles/Flex.styled";
 
 
-const Header = (props) => {
+const Header = () => {
   return (
     <StyledHeader>
    
         <Nav>
-          <Logo src={a} alt="logo" />
+          <Logo src={logo} alt="logo" />
           <NavUnListed>
             <NavLink to="/" className={({isActive}) =>(isActive ?'active' : '')} >
               <li>Home</li>

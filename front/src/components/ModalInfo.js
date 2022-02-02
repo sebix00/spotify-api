@@ -8,11 +8,11 @@ import {
   TrackInfo,
   StyledLink,
   Back,Front,
-  StyledPlay
+
 } from "./styles/StyledModal";
 import { StyledIcon } from "./styles/Common.styled";
 import {IoArrowBackCircleOutline } from "react-icons/io5";
-import { BsFillHeartFill,BsStar ,BsPlayCircle} from "react-icons/bs";
+import { BsFillHeartFill} from "react-icons/bs";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { favouriteAction } from "../store/favourite-slice";
@@ -54,7 +54,6 @@ const  ModalInfo=(props)=> {
     const  toggleModal=(e)=> {
       setOpacity(0);
       setIsOpen(!isOpen);
-      console.log("modal")
     }
   
   const afterOpen=()=> {

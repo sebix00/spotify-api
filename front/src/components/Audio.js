@@ -27,7 +27,6 @@ const useAudio = url => {
 
 
 const Player = ({ url }) => {
-  console.log(url);
   const [playing, toggle] = useAudio(url);
 
   return (

@@ -20,7 +20,7 @@ const Input = (props) => {
   const inputHandler = (event) => {
     dispatch(userActions.handleInput(event.target.value));
     setInputIsValid(hasThreeCharacters(event.target.value));
-    console.log(hasThreeCharacters(event.target.value))
+   
    
   };
   const name = useSelector(state=>state.input.input);

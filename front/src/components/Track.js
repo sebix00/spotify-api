@@ -1,16 +1,12 @@
-import { AiOutlineHeart } from "react-icons/ai";
 import { BsFillHeartFill } from "react-icons/bs";
-import { StyledTrack,TrackImg,ArtistName,TrackButtons,TrackInfo,TrackButton,Title} from "./styles/Track.styled";
-import { useState, useEffect } from "react";
+import { StyledTrack,TrackImg,ArtistName,TrackButtons,TrackInfo,Title} from "./styles/Track.styled";
+import { useState} from "react";
 import { useDispatch } from "react-redux";
 import { favouriteAction } from "../store/favourite-slice";
 import { userActions } from "../store/userInput";
-import { useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import ModalInfo from "./ModalInfo";
 
-
-import Player from "./Audio";
 import {
   deleteTrack,
   saveTrack,
@@ -19,15 +15,6 @@ import {
 const Track = (props) => {
 
   const dispatch = useDispatch();
-
-  const [showModal,setShowModal] = useState(false)
-
-  const handleOpenModal = ()=>{
-    setShowModal(true);
-  }
-  const handleCloseModal = ()=>{
-    setShowModal(false);
-  }
 
 
 
@@ -48,19 +35,12 @@ const Track = (props) => {
   };
 }
 
-// const tracks = useSelector(state=>state.input.tracks);
-// const index = tracks.findIndex(track=>track.id===props.id);
-// const isFav = useState(false);
-
-
-
 
 
   return (
     <StyledTrack>
       <TrackImg src={props.img}/>
-      
-     {/* <Player url={props.music}/> */}
+
      <TrackInfo>
      <div>
      <ArtistName>{props.artist}</ArtistName>
@@ -71,7 +51,6 @@ const Track = (props) => {
   
     
       <TrackButtons>
-      {/* <TrackButton onClick={handleOpenModal}>More info</TrackButton> */}
       <ModalInfo 
         artist={props.artist}
         title={props.title}
@@ -94,7 +73,6 @@ const Track = (props) => {
      </TrackInfo>
      
    
-    
     </StyledTrack>
   );
 };
